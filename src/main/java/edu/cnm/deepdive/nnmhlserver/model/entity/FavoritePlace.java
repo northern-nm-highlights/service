@@ -3,6 +3,7 @@ package edu.cnm.deepdive.nnmhlserver.model.entity;
 import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 
+@SuppressWarnings("JpaDataSourceORMInspection")
+@Entity
 public class FavoritePlace {
 
   @Id
@@ -21,7 +24,13 @@ public class FavoritePlace {
   private UUID id;
 
   @Column(nullable = false, updatable = false, length = 100)
-  private String city_name;
+  private String cityName;
+
+  @Column(nullable = false, updatable = false, length = 50)
+  private String placeId;
+
+  @Column(nullable = false, updatable = false, length = 255)
+  private String placeName;
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false, updatable = false)
@@ -36,12 +45,12 @@ public class FavoritePlace {
     return id;
   }
 
-  public String getCity_name() {
-    return city_name;
+  public String getCityName() {
+    return cityName;
   }
 
-  public void setCity_name(String city_name) {
-    this.city_name = city_name;
+  public void setCityName(String cityName) {
+    this.cityName = cityName;
   }
 
   public User getUser() {
