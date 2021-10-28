@@ -1,72 +1,68 @@
 package edu.cnm.deepdive.nnmhlserver.model.entity;
 
+import java.util.Date;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "student")
+@Table(
+    name = "user_profile",
+    indexes = {
+        @Index(columnList = "name")
+    }
+    )
 /**
  * The user model class for a user of Norther New Mexico Hightlights
  */
 public class User {
 
   @Id
-  @Column(name = "id")
-  private long userId;
+  @GeneratedValue
+  @Column(name = "user_id", updatable = false, nullable = false, columnDefinition = "UUID")
+  private UUID id;
 
-  @Column(name = "date_created")
-  private String dateCreated;
+  @Column(nullable = false, updatable = false, unique = true, columnDefinition = "UUID")
+  private UUID name;
 
-  @Column(name = "user_name")
-  private String userName;
+  @Column(nullable = false, updatable = false, unique = true, length = 30)
+  private String oathKey;
 
-  @Column(name = "user_email")
-  private String userEmail;
+  @Column(nullable = false, updatable = false, unique = true, length = 50)
+  private String displayName;
 
-  @Column(name = "user_password")
-  private String password;
-
-
-  public long getUserId() {
-    return userId;
+  public UUID getUser() {
+    return id;
   }
 
-  public void setUserId(long userId) {
-    this.userId = userId;
+  public UUID getName() {
+    return name;
   }
 
-  public String getDateCreated() {
-    return dateCreated;
+  public void setName(UUID name) {
+    this.name = name;
   }
 
-  public void setDateCreated(String dateCreated) {
-    this.dateCreated = dateCreated;
+  public String getOathKey() {
+    return oathKey;
   }
 
-  public String getUserName() {
-    return userName;
+  public void setOathKey(String oathKey) {
+    this.oathKey = oathKey;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public String getDisplayName() {
+    return displayName;
   }
 
-  public String getUserEmail() {
-    return userEmail;
-  }
-
-  public void setUserEmail(String userEmail) {
-    this.userEmail = userEmail;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
   }
 }
