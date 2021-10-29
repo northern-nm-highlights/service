@@ -14,16 +14,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+/**
+ * The user model class for a user of Norther New Mexico Hightlights
+ */
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Table(
     name = "user_profile",
     indexes = {
         @Index(columnList = "name")
     }
-    )
-/**
- * The user model class for a user of Norther New Mexico Hightlights
- */
+)
 public class User {
 
   @Id

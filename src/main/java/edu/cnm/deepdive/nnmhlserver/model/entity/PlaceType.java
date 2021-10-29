@@ -2,9 +2,12 @@ package edu.cnm.deepdive.nnmhlserver.model.entity;
 
 import java.util.UUID;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
+@Entity
 public class PlaceType {
 
   @Id
