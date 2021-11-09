@@ -1,1 +1,13 @@
-
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          client-id: 1023684924042-165gkbak1iffm3dc19k1g83d2j4ilcim.apps.googleusercontent.com
+  datasource:
+    url: jdbc:h2:file:./db/nnmhl-server
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
