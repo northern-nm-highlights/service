@@ -1,3 +1,11 @@
+server:
+  error:
+    include-message: always
+  forward-headers-strategy: native
+  port: 18081
+  servlet:
+    context-path: /nnmhlserver
+
 spring:
   security:
     oauth2:
