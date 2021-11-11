@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements Converter<Jwt, UsernamePasswordAuthenticationToken> {
 
-  private final UserRepository repository;
+  private final UserRepository
+      repository;
 
   @Autowired
   public UserService(UserRepository repository) {
