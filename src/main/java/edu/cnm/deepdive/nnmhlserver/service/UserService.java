@@ -46,6 +46,8 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
     return repository.findById(id);
 
   }
+//  TODO replace "getBYExternalKey" with getBy"insert priomary key"
+//  TODO find by primary key instead of external key.
   public Optional<User> getByExternalKey(UUID key) {
     return repository.findByExternalKey(key);
   }

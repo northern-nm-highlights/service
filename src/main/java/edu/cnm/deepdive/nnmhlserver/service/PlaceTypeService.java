@@ -28,6 +28,7 @@ public class PlaceTypeService {
   }
 
   public Optional<PlaceType> get(UUID key, User user) {
+//    TODO find by the primary key identified in PlaceTypeRepository.
     return placeTypeRepository.findByExternalKeyAndUser(key, user);
   }
 
@@ -37,6 +38,7 @@ public class PlaceTypeService {
 
   public void delete(UUID key, User user) {
     placeTypeRepository
+//        TODO find by primary key identified in PlaceTypeRepository.
         .findByExternalKeyAndUser(key, user)
         .ifPresent(placeTypeRepository::delete);
   }
