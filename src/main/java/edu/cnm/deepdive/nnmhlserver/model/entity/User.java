@@ -15,7 +15,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 /**
- * The user model class for a user of Norther New Mexico Hightlights
+ * The user model class for a user of Northern New Mexico Highlights
  */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
@@ -66,3 +66,4 @@ public class User {
     return favoritePlaces;
   }
 }
+
