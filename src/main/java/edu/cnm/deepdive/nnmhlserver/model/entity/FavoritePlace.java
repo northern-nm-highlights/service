@@ -23,6 +23,9 @@ public class FavoritePlace {
   @Column(name = "favorite_place_id", nullable = false, updatable = false, columnDefinition = "UUID")
   private UUID id;
 
+  @Column(updatable = false, nullable = false, columnDefinition = "UUID", unique = true)
+  private UUID externalKey = UUID.randomUUID();
+
   @Column(nullable = false, updatable = false, length = 100)
   private String cityName;
 
@@ -43,6 +46,14 @@ public class FavoritePlace {
 
   public UUID getId() {
     return id;
+  }
+
+  public UUID getExternalKey() {
+    return externalKey;
+  }
+
+  public void setExternalKey(UUID externalKey) {
+    this.externalKey = externalKey;
   }
 
   public String getCityName() {

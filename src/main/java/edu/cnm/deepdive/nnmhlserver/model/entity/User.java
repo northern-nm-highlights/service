@@ -1,5 +1,7 @@
 package edu.cnm.deepdive.nnmhlserver.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -32,6 +34,10 @@ public class User {
   @Column(name = "user_id", updatable = false, nullable = false, columnDefinition = "UUID")
   private UUID id;
 
+  @Column(updatable = false, nullable = false, unique = true, columnDefinition = "UUID")
+  @JsonProperty(value = "id", access = Access.READ_ONLY)
+  private UUID externalKey = UUID.randomUUID();
+
   @Column(nullable = false, updatable = false, unique = true, length = 30)
   private String oauthKey;
 
@@ -48,6 +54,14 @@ public class User {
 
   public String getOauthKey() {
     return oauthKey;
+  }
+
+  public UUID getExternalKey() {
+    return externalKey;
+  }
+
+  public void setExternalKey(UUID externalKey) {
+    this.externalKey = externalKey;
   }
 
   public void setOauthKey(String oathKey) {

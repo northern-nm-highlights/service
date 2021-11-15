@@ -8,10 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlaceTypeRepository extends JpaRepository<PlaceType, UUID> {
 
-//  TODO find by primary key instead of external key.
   Optional<PlaceType> findByExternalKey(UUID key);
 
-//  TODO find by primary key instead of external key.
-  Optional<PlaceType> findByExternalKeyAndUser(UUID key, User user);
+//  Optional<PlaceType> findByExternalKeyAndUser(UUID key, User user);
 
 }

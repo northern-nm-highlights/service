@@ -8,10 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FavoritePlaceRepository extends JpaRepository<FavoritePlace, UUID> {
 
-//  TODO find by primary key instead of external key
   Optional<FavoritePlace> findByExternalKey(UUID key);
 
-//  TODO find by primary key instead of external key
   Optional<FavoritePlace> findByExternalKeyAndUser(UUID key, User user);
 
 }
