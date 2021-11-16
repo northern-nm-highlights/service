@@ -10,6 +10,6 @@ public interface PlaceTypeRepository extends JpaRepository<PlaceType, UUID> {
 
   Optional<PlaceType> findByExternalKey(UUID key);
 
-//  Optional<PlaceType> findByExternalKeyAndUser(UUID key, User user);
+  Optional<PlaceType> findByExternalKeyAndUser(UUID key, User user);
 
 }

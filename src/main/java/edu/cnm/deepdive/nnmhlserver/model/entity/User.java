@@ -2,6 +2,7 @@ package edu.cnm.deepdive.nnmhlserver.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +16,9 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  * The user model class for a user of Northern New Mexico Highlights
@@ -24,7 +28,7 @@ import javax.persistence.Table;
 @Table(
     name = "user_profile",
     indexes = {
-        @Index(columnList = "name")
+        @Index(columnList = "created")
     }
 )
 public class User {
@@ -43,6 +47,11 @@ public class User {
 
   @Column(nullable = false, updatable = false, unique = true, length = 50)
   private String displayName;
+
+  @CreationTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(updatable = false, nullable = false)
+  private Date created;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
   @OrderBy("placeName ASC")
@@ -70,6 +79,14 @@ public class User {
 
   public String getDisplayName() {
     return displayName;
+  }
+
+  public Date getCreated() {
+    return created;
+  }
+
+  public void setCreated(Date created) {
+    this.created = created;
   }
 
   public void setDisplayName(String displayName) {
