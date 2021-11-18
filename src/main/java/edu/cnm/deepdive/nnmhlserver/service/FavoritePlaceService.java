@@ -4,6 +4,7 @@ import edu.cnm.deepdive.nnmhlserver.model.dao.FavoritePlaceRepository;
 import edu.cnm.deepdive.nnmhlserver.model.dao.UserRepository;
 import edu.cnm.deepdive.nnmhlserver.model.entity.FavoritePlace;
 import edu.cnm.deepdive.nnmhlserver.model.entity.User;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,10 @@ public class FavoritePlaceService {
     favoritePlaceRepository
         .findByExternalKeyAndUser(externalKey, user)
         .ifPresent(favoritePlaceRepository::delete);
+  }
+
+  public Optional<FavoritePlace> get(User user, UUID externalKey) {
+    return favoritePlaceRepository
+        .findByExternalKeyAndUser(externalKey, user);
   }
 }

@@ -51,4 +51,11 @@ public class FavoritePlaceController {
     favoritePlaceService.delete(userService.getCurrentUser(), externalKey);
   }
 
+  @GetMapping(value = "/{externalKey}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public FavoritePlace get(@PathVariable UUID externalKey) {
+    return favoritePlaceService
+        .get(userService.getCurrentUser(), externalKey)
+        .orElseThrow();
+  }
+
 }
