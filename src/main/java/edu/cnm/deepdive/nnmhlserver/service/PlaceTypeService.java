@@ -10,12 +10,20 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Provides high level persistence and business logic for {@link PlaceType} entity.
+ */
 @Service
 public class PlaceTypeService {
 
   private final PlaceTypeRepository placeTypeRepository;
   private final FavoritePlaceRepository favoritePlaceRepository;
 
+  /**
+   * Initializes service with required repositories.
+   * @param placeTypeRepository
+   * @param favoritePlaceRepository
+   */
   @Autowired
   public PlaceTypeService(PlaceTypeRepository placeTypeRepository,
       FavoritePlaceRepository favoritePlaceRepository) {
@@ -23,23 +31,23 @@ public class PlaceTypeService {
     this.favoritePlaceRepository = favoritePlaceRepository;
   }
 
+  /**
+   * Returns place type by primary key value.
+   * @param id
+   * @return place type if specified place type exists.
+   */
   public Optional<PlaceType> get(UUID id) {
     return placeTypeRepository.findById(id);
   }
 
-//  public Optional<PlaceType> get(UUID key, User user) {
-////    TODO find by the primary key identified in PlaceTypeRepository.
-////    return placeTypeRepository.findByExternalKeyAndUser(key, user);
-//  }
-
-  public void delete(UUID id) {
-    placeTypeRepository.deleteById(id);
+  /**
+   * Returns place type by external key value.
+   * @param key
+   * @return place type if specified place type exists.
+   */
+  public Optional<PlaceType> getByExternalKey(UUID key) {
+    return placeTypeRepository.findByExternalKey(key);
   }
 
-//  public void delete(UUID key, User user) {
-//    placeTypeRepository
-//        TODO find by primary key identified in PlaceTypeRepository.
-//        .findByExternalKeyAndUser(key, user)
-//        .ifPresent(placeTypeRepository::delete);
-  }
+}
 

@@ -15,6 +15,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
+/**
+ * Encapsulates the key properties of a place type including; place type name, place type id and
+ * display name of place tied to a {@link User}.
+ */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 public class PlaceType {
@@ -28,10 +32,6 @@ public class PlaceType {
   @JsonProperty(value = "id", access = Access.READ_ONLY)
   private UUID externalKey = UUID.randomUUID();
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", nullable = false, updatable = false)
-  private User user;
-
   @Column(nullable = false, updatable = false, length = 50, unique = true)
   private String name;
 
@@ -43,46 +43,58 @@ public class PlaceType {
   @Column(nullable = false, updatable = false, length = 50, unique = true)
   private String displayName;
 
+  /**
+   * Returns primary key for a place type.
+   * @return
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Returns unique Id for a place type.
+   * @return
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
-  public void setExternalKey(UUID externalKey) {
-    this.externalKey = externalKey;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
+  /**
+   * Returns name of places within a place type.
+   * @return
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Assigns name of places within a place type.
+   * @param name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Returns date timestamp from creation of place type.
+   * @return
+   */
   public Date getCreated() {
     return created;
   }
 
-  public void setCreated(Date created) {
-    this.created = created;
-  }
-
+  /**
+   * Returns display name of place type.
+   * @return
+   */
   public String getDisplayName() {
     return displayName;
   }
 
+  /**
+   * Assigns display name of place type.
+   * @param displayName
+   */
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }

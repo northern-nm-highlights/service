@@ -20,6 +20,10 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 
+/**
+ * Encapsulates the key properties of a favorite place including; favorite place id, city name, place
+ * id and place name tied to a {@link User}.
+ */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @JsonInclude(Include.NON_NULL)
@@ -56,50 +60,90 @@ public class FavoritePlace {
   @JsonProperty(access = Access.READ_ONLY)
   private Date created;
 
+  /**
+   * Returns primary key for a favorite place.
+   * @return
+   */
   public UUID getId() {
     return id;
   }
 
+  /**
+   * Returns unique Id for favorite place.
+   * @return
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
-  public void setExternalKey(UUID externalKey) {
-    this.externalKey = externalKey;
-  }
-
+  /**
+   * Returns city name of favorite place's location.
+   * @return
+   */
   public String getCityName() {
     return cityName;
   }
 
+  /**
+   * Assigns specificed city to this city name.
+   * @param cityName
+   */
   public void setCityName(String cityName) {
     this.cityName = cityName;
   }
 
+  /**
+   * Returns assigned {@link User} favorite places.
+   * @return
+   */
   public User getUser() {
     return user;
   }
 
+  /**
+   * Assigns {@link User} favorite places.
+   * @param user
+   */
   public void setUser(User user) {
     this.user = user;
   }
 
+  /**
+   * Returns generated date stamp of creation for the favorite place.
+   * @return
+   */
   public Date getCreated() {
     return created;
   }
 
+  /**
+   * Returns the Google Place's API unique Id for favorite place.
+   * @return
+   */
   public String getPlaceId() {
     return placeId;
   }
 
+  /**
+   * Assigns Google Place's API unique Id for favorite place.
+   * @param placeId
+   */
   public void setPlaceId(String placeId) {
     this.placeId = placeId;
   }
 
+  /**
+   * Returns name of favorite place by the place Id.
+   * @return
+   */
   public String getPlaceName() {
     return placeName;
   }
 
+  /**
+   * Assigns name of favorite place by the place Id.
+   * @param placeName
+   */
   public void setPlaceName(String placeName) {
     this.placeName = placeName;
   }

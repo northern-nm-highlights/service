@@ -14,12 +14,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+/**
+ * Provides high level persistence and business logic for {@link User} entity.
+ */
 @Service
 public class UserService implements Converter<Jwt, UsernamePasswordAuthenticationToken> {
 
   private final UserRepository
       repository;
 
+  /**
+   * Initializes service with the required repositories.
+   * @param repository
+   */
   @Autowired
   public UserService(UserRepository repository) {
     this.repository = repository;
@@ -34,6 +41,13 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         source.getTokenValue(), grants);
   }
 
+  /**
+   * Returns display name if Oauth key associated with {@link User} exists and if it doesn't exist,
+   * user must create one.
+   * @param oauthKey
+   * @param displayName
+   * @return
+   */
   public User getOrCreate(String oauthKey, String displayName) {
     return repository
         .findByOauthKey(oauthKey)
@@ -45,31 +59,56 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         });
   }
 
+  /**
+   * Queries and returns {@link User} by unique Id if present in database.
+   * @param id
+   * @return
+   */
   public Optional<User> get(UUID id) {
     return repository.findById(id);
 
   }
 
-  //  TODO replace "getBYExternalKey" with getBy"insert priomary key"
-//  TODO find by primary key instead of external key.
+  /**
+   * Queries and returns {@link User} by external key if present in database.
+   * @param key
+   * @return
+   */
   public Optional<User> getByExternalKey(UUID key) {
     return repository.findByExternalKey(key);
   }
 
+  /**
+   * Returns all users in ascending order by their display name.
+   * @return
+   */
   public Iterable<User> getAll() {
     return repository.getAllByOrderByDisplayNameAsc();
 
   }
 
+  /**
+   * Saves information tied to {@link User}.
+   * @param user
+   * @return
+   */
   public User save(User user) {
     return repository.save(user);
   }
 
+  /**
+   * Deletes current {@link User} profile.
+   * @param user
+   */
   public void delete(User user) {
     repository.delete(user);
   }
 
 
+  /**
+   * Returns information about the current {@link User}.
+   * @return
+   */
   public User getCurrentUser() {
     return (User) SecurityContextHolder
         .getContext()
@@ -77,6 +116,12 @@ public class UserService implements Converter<Jwt, UsernamePasswordAuthenticatio
         .getPrincipal();
   }
 
+  /**
+   * Returns updated information about {@link User}.
+   * @param currentUser
+   * @param updatedUser
+   * @return
+   */
   public User update(User currentUser, User updatedUser) {
     if (updatedUser.getDisplayName() != null) {
       currentUser.setDisplayName(updatedUser.getDisplayName());

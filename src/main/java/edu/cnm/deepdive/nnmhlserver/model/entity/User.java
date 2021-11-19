@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 /**
- * The user model class for a user of Northern New Mexico Highlights
+ * Encapsulates the key properties of a user including; display name, external key and user id.
  */
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
@@ -64,42 +64,66 @@ public class User {
   @JsonIgnore
   private final List<FavoritePlace> favoritePlaces = new LinkedList<>();
 
+  /**
+   * Returns primary key for a user.
+   * @return
+   */
   public UUID getId() {
     return id;
   }
 
-  public String getOauthKey() {
-    return oauthKey;
-  }
-
+  /**
+   * Returns unique Id for specific user.
+   * @return
+   */
   public UUID getExternalKey() {
     return externalKey;
   }
 
-  public void setExternalKey(UUID externalKey) {
-    this.externalKey = externalKey;
+  /**
+   * Returns the Oauth key associated with user.
+   * @return
+   */
+  public String getOauthKey() {
+    return oauthKey;
   }
 
+  /**
+   * Assigns Oauth key associated with user.
+   * @param oathKey
+   */
   public void setOauthKey(String oathKey) {
     this.oauthKey = oathKey;
   }
 
-  public String getDisplayName() {
-    return displayName;
-  }
-
+  /**
+   * Returns generated date timestamp of creation of the user.
+   * @return
+   */
   public Date getCreated() {
     return created;
   }
 
-  public void setCreated(Date created) {
-    this.created = created;
+  /**
+   * Returns display name given to user when signed into Google Sign-in.
+   * @return
+   */
+  public String getDisplayName() {
+    return displayName;
   }
 
+  /**
+   * Assigns display name given to user when signed into Google Sign-in.
+   * @param displayName
+   */
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
+  /**
+   * Returns list of {@link FavoritePlace} selected by user.
+   * @return
+   */
   public List<FavoritePlace> getFavoritePlaces() {
     return favoritePlaces;
   }
