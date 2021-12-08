@@ -8,6 +8,7 @@ import edu.cnm.deepdive.nnmhlserver.model.entity.User;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
@@ -49,5 +50,8 @@ public class PlaceTypeService {
     return placeTypeRepository.findByExternalKey(key);
   }
 
+  public Iterable<PlaceType> getAll() {
+    return placeTypeRepository.getAllByOrderByDisplayNameAsc();
+  }
 }
 

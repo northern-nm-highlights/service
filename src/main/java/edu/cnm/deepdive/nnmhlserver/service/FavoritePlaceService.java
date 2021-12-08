@@ -7,12 +7,14 @@ import edu.cnm.deepdive.nnmhlserver.model.entity.User;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
  * Provides high level persistence and business logic for {@link FavoritePlace} entity.
  */
 @Service
+@Profile("service")
 public class FavoritePlaceService {
 
 

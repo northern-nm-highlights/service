@@ -1,0 +1,17 @@
+server:
+  error:
+    include-message: always
+  forward-headers-strategy: native
+  port: 18081
+  servlet:
+    context-path: /nnmhlserver
+
+spring:
+  application:
+    name: service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          client-id: 1023684924042-165gkbak1iffm3dc19k1g83d2j4ilcim.apps.googleusercontent.com

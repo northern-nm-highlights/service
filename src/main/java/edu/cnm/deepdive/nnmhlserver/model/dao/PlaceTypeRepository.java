@@ -18,6 +18,6 @@ public interface PlaceTypeRepository extends JpaRepository<PlaceType, UUID> {
    */
   Optional<PlaceType> findByExternalKey(UUID key);
 
-
+  Iterable<PlaceType> getAllByOrderByDisplayNameAsc();
 
 }
