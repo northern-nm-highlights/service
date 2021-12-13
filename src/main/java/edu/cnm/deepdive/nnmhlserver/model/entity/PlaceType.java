@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.nnmhlserver.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class PlaceType {
   @Id
   @GeneratedValue
   @Column(name = "place_type_id", nullable = false, updatable = false, columnDefinition = "UUID")
+  @JsonIgnore
   private UUID id;
 
   @Column(updatable = false, nullable = false, columnDefinition = "UUID", unique = true)
